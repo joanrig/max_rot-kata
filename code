@@ -1,0 +1,30 @@
+#test program
+
+def max_rot(n) #=> 56789
+  list= [n] #=> [56789]
+  length = n.to_s.length #=> 5
+  
+  num_array = n.to_s.scan(/./) #=> ["5", "6", "7", "8", "9"]
+  
+  #rotate all numbers
+  rotate1 = num_array.rotate #=>["6", "7", "8", "9", "5"]
+  list<< rotate1.join.to_i #=> list = [56789, 67895]
+  
+  #freeze first digit, rotate rest
+  rotate2 = ([rotate1.shift(1)] + rotate1.rotate).flatten #=> ["6", "8", "9", "5", "7"]
+  list<< rotate2.join.to_i #=> list = [56789, 67895, 68957]
+  
+  #freeze first two digits, rotate rest
+  rotate3 = ([rotate2.shift(2)] + rotate2.rotate).flatten #=> ["6", "8", "5", "7", "9"]
+  list<< rotate3.join.to_i #=> list = [56789, 67895, 68957, 68579]
+  
+  #freeze first three digits, rotate rest
+  rotate4 = ([rotate3.shift(3)] + rotate3.rotate).flatten #=> "6", "8", "5", "9", "7"]
+  list<< rotate4.join.to_i #=> list = [56789, 67895, 68957, 68579, 68597]
+  
+  list.sort.last#=68957
+  
+end
+
+
+
